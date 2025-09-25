@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "versoscale-worker"
+version = "1.0.0"
+authors = [
+    { name="VersoScale Engineering", email="mike@versoindustries.com" },
+]
+description = "A robust, secure, and resilient client for participating in large-scale distributed machine learning tasks within the VersoScale ecosystem."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { file="LICENSE" }
+keywords = ["grpc", "resilience", "distributed training", "machine learning", "mtls"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: System :: Distributed Computing",
+    "Framework :: gRPC",
+]
+dependencies = [
+    "grpcio >= 1.40.0",
+    "cryptography >= 3.4",
+    "tensorflow",
+    "flask",
+    "protobuf",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/example/versoscale-worker"
+"Bug Tracker" = "https://github.com/example/versoscale-worker/issues"
+
+[tool.setuptools]
+packages = ["versoscale_worker", "versoscale_worker.protos"]

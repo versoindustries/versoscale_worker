@@ -1,0 +1,46 @@
+Metadata-Version: 2.4
+Name: versoscale-worker
+Version: 1.0.0
+Summary: A robust, secure, and resilient client for participating in large-scale distributed machine learning tasks within the VersoScale ecosystem.
+Author-email: VersoScale Engineering <mike@versoindustries.com>
+Project-URL: Homepage, https://github.com/example/versoscale-worker
+Project-URL: Bug Tracker, https://github.com/example/versoscale-worker/issues
+Keywords: grpc,resilience,distributed training,machine learning,mtls
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: System :: Distributed Computing
+Classifier: Framework :: gRPC
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: grpcio>=1.40.0
+Requires-Dist: cryptography>=3.4
+Requires-Dist: tensorflow
+Requires-Dist: flask
+Requires-Dist: protobuf
+
+VersoScale WorkerThis is the command-line runner for the VersoScale Worker. It handles the secure bootstrapping process and launches the main worker client.First-Time Setup (Onboarding)If you are a new user and do not have an API key, you can create a new tenant and generate your first admin API key with a single command.Run the Onboarding CommandOpen your terminal and run the runner script with the --onboard flag, providing your desired tenant name in quotes.python runner.py --onboard "My New Company"
+Save Your API KeyThe command will contact the VersoScale service, create your tenant, and print your new API key.==================================================
+🎉 Onboarding Successful! 🎉
+  Tenant Name: My New Company
+  Tenant ID:   ten-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+--------------------------------------------------
+Your new admin API key is listed below.
+Please save it in a secure location. You will not be shown it again.
+--------------------------------------------------
+
+vsk_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+==================================================
+
+To start your first worker, run the following command:
+python runner.py --api-key vsk_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+IMPORTANT: This is the only time your secret API key will be shown. Copy it and store it in a secure place like a password manager.Running a WorkerOnce you have your API key, you can start one or more workers. The runner will use your persistent API key to automatically acquire a short-lived registration token for each worker instance.You can provide the API key in one of two ways:Option 1: Command-Line Argument (Recommended for testing)Pass the key directly using the --api-key flag.python runner.py --api-key <YOUR_SAVED_API_KEY>
+Option 2: Environment Variable (Recommended for production/scripts)Set the VERSOSCALE_API_KEY environment variable.Linux/macOS:export VERSOSCALE_API_KEY=<YOUR_SAVED_API_KEY>
+python runner.py
+Windows (Command Prompt):set VERSOSCALE_API_KEY=<YOUR_SAVED_API_KEY>
+python runner.py
+The worker will then start, register itself, and begin polling for jobs.
